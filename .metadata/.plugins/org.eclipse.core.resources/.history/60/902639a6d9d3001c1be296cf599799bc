@@ -41,8 +41,8 @@ public class UserDaoImpl implements UserDao{
 		try {
 			conn = DBUtil.makeConnection();
 			Statement stmt = conn.createStatement();
-			String query = "select * from user_details where email_id='"+userPojo.getEmailId()
-			+"' and password='"+userPojo.getPassword()+"'";
+			String query = "select * from user_details where email_id="+userPojo.getEmailId()
+			+" and password='"+userPojo.getPassword()+"'";
 			ResultSet resultSet = stmt.executeQuery(query);
 			if(resultSet.next()) {
 				
