@@ -62,21 +62,21 @@ public class BankingApplicationSystem {
 				userLoginPojo.setUserName(scan.nextLine());
 				
 				System.out.println("Enter user password:");
-				userLoginPojo.setPassword(scan.nextLine());
+				userLoginPojo.setUserPassword(scan.nextLine());
 				
-				UserPojo loginUserPojo = null;
+				UserPojo returnedLoginUserPojo = null;
 				try {
-					loginUserPojo = testUserService.loginUser(userLoginPojo);
-				} catch (SystemException e) {
+					returnedLoginUserPojo = userService.validateUser(userLoginPojo);
+				} catch (ApplicationException e) {
 					System.out.println("**********************************");
 					System.out.println("Sorry!! There is some issue with the database...");
 					System.out.println("Please try after sometime....");
 					System.out.println("**********************************");
-					System.out.println(e.getMessage());
+					logger.error(e.getMessage());
 					break;
 				}
 				
-				String userType = loginUserPojo.getUserName();
+				String userType = returnedLoginUserPojo.getUserType();
 				if(userType !=null && userType.equals("customer")) {
 					System.out.println("**********************************");
 					System.out.println("Customer Login successfull!!");
@@ -93,15 +93,12 @@ public class BankingApplicationSystem {
 					System.out.println("**********************************");
 				}
 				break;
-			}
 			System.out.println("*******************************************************************");
 			System.out.println("Thank you for using Banking Application System!!");
 			System.out.println("*******************************************************************");
 			System.exit(0);
 
 		}
-		
 
 	}
 }
-

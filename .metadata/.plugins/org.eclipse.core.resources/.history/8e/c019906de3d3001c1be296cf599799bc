@@ -56,43 +56,39 @@ public class BankingApplicationSystem {
 				System.out.println("*****************************");
 				break;
 			case 2:
-				UserPojo userLoginPojo = new UserPojo();
-				
-				System.out.println("Enter username:");
-				userLoginPojo.setUserName(scan.nextLine());
-				
-				System.out.println("Enter user password:");
-				userLoginPojo.setPassword(scan.nextLine());
-				
-				UserPojo loginUserPojo = null;
+				UserPojo viewUserPojo = null;
+				UserService userService = new UserServiceImpl();
+				System.out.println("please enter your username :");
+				scan.nextLine();
+				viewUserPojo.setUserName(scan.nextLine());
+				System.out.println("please enter your password :");
+				scan.nextLine();
+				viewUserPojo.setPassword(scan.nextLine());
+
 				try {
-					loginUserPojo = testUserService.loginUser(userLoginPojo);
+					viewUserPojo = userService.loginUser(null, null);
 				} catch (SystemException e) {
-					System.out.println("**********************************");
-					System.out.println("Sorry!! There is some issue with the database...");
-					System.out.println("Please try after sometime....");
-					System.out.println("**********************************");
 					System.out.println(e.getMessage());
 					break;
 				}
-				
-				String userType = loginUserPojo.getUserName();
-				if(userType !=null && userType.equals("customer")) {
-					System.out.println("**********************************");
-					System.out.println("Customer Login successfull!!");
-					System.out.println("Display Customer Menu.");
-					System.out.println("**********************************");
-				}else if(userType !=null && userType.equals("employee")) {
-					System.out.println("**********************************");
-					System.out.println("Employee Login successfull!!");
-					System.out.println("Display Employee Menu.");
-					System.out.println("**********************************");
-				}else if(userType == null){
-					System.out.println("**********************************");
-					System.out.println("Login failed!!");
-					System.out.println("**********************************");
+
+				if (viewUserPojo == null) {
+					System.out.println("*****************************");
+					System.out.println("Product ID does not exist. \nPlease enter a valid Product ID!");
+					System.out.println("*****************************");
+					break;
+				} else {
+					System.out.println("*****************************");
+					System.out.println("Product to be updated...");
+					System.out.println("*****************************");
+					System.out.println("Product ID : " + viewUserPojo.getUserName());
+					System.out.println("Product Name : " + viewUserPojo.getEmailId());
+					System.out.println("Product Description : " + viewUserPojo.getPassword());
+					System.out.println("Product Cost : " + viewUserPojo.getPhoneNo());
+					System.out.println("*****************************");
+					System.out.println("Please enter new Product Cost :");
+
 				}
-				break;
 			}
 			System.out.println("*******************************************************************");
 			System.out.println("Thank you for using Banking Application System!!");
@@ -100,8 +96,6 @@ public class BankingApplicationSystem {
 			System.exit(0);
 
 		}
-		
 
 	}
 }
-

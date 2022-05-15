@@ -26,9 +26,9 @@ public class UserServiceImpl implements UserService {
 		return userDao.addUser(userPojo);
 	}
 
-	public UserPojo loginUser(UserPojo userPojo) throws SystemException {
+	public UserPojo loginUser(String username, String password) throws SystemException {
 
-		return userDao.loginUser(userPojo);
+		return userDao.loginUser(username, password);
 	}
 
 }

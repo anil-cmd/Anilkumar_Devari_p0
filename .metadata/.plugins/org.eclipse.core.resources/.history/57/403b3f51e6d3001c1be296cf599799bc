@@ -93,15 +93,12 @@ public class BankingApplicationSystem {
 					System.out.println("**********************************");
 				}
 				break;
-			}
 			System.out.println("*******************************************************************");
 			System.out.println("Thank you for using Banking Application System!!");
 			System.out.println("*******************************************************************");
 			System.exit(0);
 
 		}
-		
 
 	}
 }
-
