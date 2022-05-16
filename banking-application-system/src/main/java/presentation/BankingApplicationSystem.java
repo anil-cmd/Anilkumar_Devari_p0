@@ -7,7 +7,10 @@ import javax.print.attribute.standard.JobOriginatingUserName;
 import dao.UserDao;
 import dao.UserDaoImpl;
 import exception.SystemException;
+import model.BankAccountPojo;
 import model.UserPojo;
+import service.BankAccountService;
+import service.BankAccountServiceImpl;
 import service.UserService;
 import service.UserServiceImpl;
 
@@ -16,7 +19,8 @@ public class BankingApplicationSystem {
 	public static void main(String[] args) {
 
 		Scanner scan = new Scanner(System.in);
-		UserService testUserService = new UserServiceImpl();
+		UserService userService = new UserServiceImpl();
+		BankAccountService accountService = new BankAccountServiceImpl();
 		char proceed = 'y';
 
 		while (proceed == 'y') {
@@ -44,9 +48,7 @@ public class BankingApplicationSystem {
 				newuserpojo.setPhoneNo(scan.nextInt());
 				UserPojo userPojo = null;
 				try {
-					System.out.println("executed");
-					userPojo = testUserService.addUser(newuserpojo);
-					System.out.println("executed");
+					userPojo = userService.addUser(newuserpojo);
 				} catch (SystemException e) {
 					System.out.println(e.getMessage());
 					break;
@@ -59,14 +61,15 @@ public class BankingApplicationSystem {
 				UserPojo userLoginPojo = new UserPojo();
 				
 				System.out.println("Enter username:");
+				scan.nextLine();
 				userLoginPojo.setUserName(scan.nextLine());
 				
 				System.out.println("Enter user password:");
 				userLoginPojo.setPassword(scan.nextLine());
 				
-				UserPojo loginUserPojo = null;
+				UserPojo returnedLoginUserPojo = null;
 				try {
-					loginUserPojo = testUserService.loginUser(userLoginPojo);
+					returnedLoginUserPojo = userService.loginUser(userLoginPojo);
 				} catch (SystemException e) {
 					System.out.println("**********************************");
 					System.out.println("Sorry!! There is some issue with the database...");
@@ -76,21 +79,45 @@ public class BankingApplicationSystem {
 					break;
 				}
 				
-				String userType = loginUserPojo.getUserName();
-				if(userType !=null && userType.equals("customer")) {
+				long userIdentification = returnedLoginUserPojo.getPhoneNo();
+				if(userIdentification !=0) {
 					System.out.println("**********************************");
-					System.out.println("Customer Login successfull!!");
-					System.out.println("Display Customer Menu.");
-					System.out.println("**********************************");
-				}else if(userType !=null && userType.equals("employee")) {
-					System.out.println("**********************************");
-					System.out.println("Employee Login successfull!!");
-					System.out.println("Display Employee Menu.");
-					System.out.println("**********************************");
-				}else if(userType == null){
-					System.out.println("**********************************");
-					System.out.println("Login failed!!");
-					System.out.println("**********************************");
+					System.out.println("user login successfull!! :"+returnedLoginUserPojo.getPhoneNo() );
+					System.out.println("*****************************");
+					System.out.println("1. Create Account");
+					System.out.println("2. Deposit Funds");
+					System.out.println("3. Withdraw Funds");
+					System.out.println("4. View Balance");
+					System.out.println("*****************************");
+					System.out.println("Please enter an option:");
+					int opt = scan.nextInt();
+					System.out.println("*****************************");
+					switch (opt) {
+					case 1:
+						BankAccountPojo newAccountPojo = new BankAccountPojo();
+						System.out.println("Please enter phoneno : ");
+						scan.nextLine();
+						newAccountPojo.setPhoneNo(scan.nextInt());
+						System.out.println("Please enter deposit amount : ");
+						newAccountPojo.setActBalance(scan.nextDouble());
+						BankAccountPojo accountPojo = null;
+						try {
+							accountPojo = accountService.createAccount(newAccountPojo);
+						} catch (SystemException e) {
+							System.out.println(e.getMessage());
+							break;
+						}
+						System.out.println("*****************************");
+						System.out.println("New Account added successfully! \nAccount balance is :$" + accountPojo.getActBalance());
+						System.out.println("*****************************");
+						break;
+						
+					case 2:
+						
+					}
+				}
+				else {
+					System.out.println("Please enter valid user credentials");
 				}
 				break;
 			}

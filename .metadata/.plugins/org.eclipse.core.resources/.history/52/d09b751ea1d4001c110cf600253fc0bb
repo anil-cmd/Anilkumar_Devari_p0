@@ -1,0 +1,13 @@
+package dao;
+
+import model.BankAccountPojo;
+
+public interface BankAccountDao {
+	
+	BankAccountPojo createAccount(BankAccountPojo bankAccountPojo);
+	BankAccountPojo depositAmount(int amount);
+	BankAccountPojo withdrawAmount(int amount);
+	Double viewBalance();
+	
+
+}

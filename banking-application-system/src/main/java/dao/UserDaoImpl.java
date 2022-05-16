@@ -35,13 +35,12 @@ public class UserDaoImpl implements UserDao{
 		
 	}
 
-	public UserPojo loginUser(UserPojo userpojo)throws SystemException {
+	public UserPojo loginUser(UserPojo userPojo)throws SystemException {
 		Connection conn = null;
-		UserPojo userPojo = null;
 		try {
 			conn = DBUtil.makeConnection();
 			Statement stmt = conn.createStatement();
-			String query = "select * from user_details where email_id='"+userPojo.getEmailId()
+			String query = "select * from user_details where user_name='"+userPojo.getUserName()
 			+"' and password='"+userPojo.getPassword()+"'";
 			ResultSet resultSet = stmt.executeQuery(query);
 			if(resultSet.next()) {
