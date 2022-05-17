@@ -15,7 +15,6 @@
     <fullyQualifiedTypeName name="model.RegistrationPojo"/>
     <fullyQualifiedTypeName name="java.lang.Class"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
-    <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="dao.DBUtil"/>
     <fullyQualifiedTypeName name="java.beans.Statement"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
@@ -27,7 +26,15 @@
     <fullyQualifiedTypeName name="exception.SystemException"/>
     <fullyQualifiedTypeName name="javax.print.attribute.standard.JobOriginatingUserName"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
-    <fullyQualifiedTypeName name="model.UserPojo"/>
     <fullyQualifiedTypeName name="service.UserService"/>
     <fullyQualifiedTypeName name="service.UserServiceImpl"/>
+    <fullyQualifiedTypeName name="model.UserPojo"/>
+    <fullyQualifiedTypeName name="java.lang.Double"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.sql.Statement"/>
+    <fullyQualifiedTypeName name="dao.BankAccountDaoImpl"/>
+    <fullyQualifiedTypeName name="dao.BankAccountDao"/>
+    <fullyQualifiedTypeName name="service.BankAccountService"/>
+    <fullyQualifiedTypeName name="service.BankAccountServiceImpl"/>
+    <fullyQualifiedTypeName name="model.BankAccountPojo"/>
 </qualifiedTypeNameHistroy>

@@ -6,9 +6,9 @@ import model.BankAccountPojo;
 public interface BankAccountService {
 	
 	BankAccountPojo createAccount(BankAccountPojo bankAccountPojo) throws SystemException;
-	BankAccountPojo depositAmount(int amount);
-	BankAccountPojo withdrawAmount(int amount);
-	Double viewBalance();
+	BankAccountPojo depositAmount(BankAccountPojo bankAccountPojo)throws SystemException;
+	BankAccountPojo withdrawAmount(BankAccountPojo bankAccountPojo)throws SystemException;
+	BankAccountPojo viewBalance(BankAccountPojo bankAccountPojo)throws SystemException;
 	
 
 }

@@ -1,0 +1,92 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import exception.SystemException;
+import model.BankAccountPojo;
+
+public class BankAccountDaoImpl implements BankAccountDao{
+
+	public BankAccountPojo createAccount(BankAccountPojo bankAccountPojo)throws SystemException {
+		
+		Connection conn = null;
+		try {
+			conn = DBUtil.makeConnection();
+			Statement stmt = conn.createStatement();
+			String query = "INSERT INTO bank_act(phone_no, act_balance) VALUES ("+bankAccountPojo.getPhoneNo()+", "+bankAccountPojo.getActBalance()+")";
+			int rowsAffected = stmt.executeUpdate(query);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new SystemException();
+		}
+		return bankAccountPojo;
+		
+	}
+
+	public BankAccountPojo depositAmount(BankAccountPojo bankAccountPojo)throws SystemException {
+		
+
+		try {
+			Connection conn = null;
+			conn = DBUtil.makeConnection();
+			Statement stmt = conn.createStatement();
+			String query = "UPDATE bank_act SET act_balance=act_balance+"+bankAccountPojo.getActBalance()+" WHERE phone_no="+bankAccountPojo.getPhoneNo();
+			int rowsAffected = stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new SystemException();
+		}
+		return bankAccountPojo;
+		
+	}
+
+	public BankAccountPojo withdrawAmount(BankAccountPojo bankAccountPojo)throws SystemException {
+		
+		try {
+			Connection conn = null;
+			conn = DBUtil.makeConnection();
+			Statement stmt = conn.createStatement();
+			String query = "UPDATE bank_act SET act_balance=act_balance-"+bankAccountPojo.getActBalance()+" WHERE phone_no="+bankAccountPojo.getPhoneNo();
+			int rowsAffected = stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new SystemException();
+		}
+		return bankAccountPojo;
+		
+	}
+
+	public Double viewBalance() {
+		List<ProductPojo> actBal = new ArrayList<ProductPojo>();
+		Connection conn = null;
+		try {
+			// obtain a connection to the db
+			conn = DBUtil.makeConnection();
+			Statement stmt = conn.createStatement();
+			String query = "SELECTact_balance  FROM bank_act";
+			//the resultSet hold the bunch of records returned by the select query
+			ResultSet resultSet = stmt.executeQuery(query);
+			int counter = 0;
+			// traverse/iterate through the result set
+			while(resultSet.next()) {
+				counter++;
+				// create a product pojo object and copy the first record's data into it
+				ProductPojo productPojo = new ProductPojo(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getInt(4), resultSet.getString(5));
+				// add the product pojo object to the collection
+				allProducts.add(productPojo);
+			}
+			if(counter == 0) {
+				throw new EmptyStoreException();
+			}
+		} catch (SQLException e) {
+			throw new SystemException();
+		}
+		
+		return allProducts;
+	}
+
+}

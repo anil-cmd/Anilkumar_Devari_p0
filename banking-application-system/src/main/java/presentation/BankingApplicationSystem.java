@@ -59,14 +59,14 @@ public class BankingApplicationSystem {
 				break;
 			case 2:
 				UserPojo userLoginPojo = new UserPojo();
-				
+
 				System.out.println("Enter username:");
 				scan.nextLine();
 				userLoginPojo.setUserName(scan.nextLine());
-				
+
 				System.out.println("Enter user password:");
 				userLoginPojo.setPassword(scan.nextLine());
-				
+
 				UserPojo returnedLoginUserPojo = null;
 				try {
 					returnedLoginUserPojo = userService.loginUser(userLoginPojo);
@@ -78,11 +78,11 @@ public class BankingApplicationSystem {
 					System.out.println(e.getMessage());
 					break;
 				}
-				
+
 				long userIdentification = returnedLoginUserPojo.getPhoneNo();
-				if(userIdentification !=0) {
+				if (userIdentification != 0) {
 					System.out.println("**********************************");
-					System.out.println("user login successfull!! :"+returnedLoginUserPojo.getPhoneNo() );
+					System.out.println("user login successfull!! :" + returnedLoginUserPojo.getUserName());
 					System.out.println("*****************************");
 					System.out.println("1. Create Account");
 					System.out.println("2. Deposit Funds");
@@ -108,15 +108,80 @@ public class BankingApplicationSystem {
 							break;
 						}
 						System.out.println("*****************************");
-						System.out.println("New Account added successfully! \nAccount balance is :$" + accountPojo.getActBalance());
+						System.out.println("New Account added successfully! \nAccount balance is :$"
+								+ accountPojo.getActBalance());
 						System.out.println("*****************************");
 						break;
-						
+
 					case 2:
+						if (returnedLoginUserPojo != null) {
+
+							BankAccountPojo addAmountPojo = new BankAccountPojo();
+							addAmountPojo.setPhoneNo(returnedLoginUserPojo.getPhoneNo());
+							System.out.println("Please enter deposit amount : ");
+							addAmountPojo.setActBalance(scan.nextDouble());
+							BankAccountPojo depositAmountPojo = null;
+
+							try {
+								depositAmountPojo = accountService.depositAmount(addAmountPojo);
+							} catch (SystemException e) {
+								System.out.println(e.getMessage());
+								break;
+							}
+							System.out.println("*****************************");
+							System.out.println("Amount Deposited successfully! \nAmount deposited :$"
+									+ depositAmountPojo.getActBalance());
+							System.out.println("*****************************");
+						}
+						break;
 						
+					case 3:
+						if (returnedLoginUserPojo != null) {
+
+							BankAccountPojo deductAmountPojo = new BankAccountPojo();
+							deductAmountPojo.setPhoneNo(returnedLoginUserPojo.getPhoneNo());
+							System.out.println("Please enter withdraw amount : ");
+							deductAmountPojo.setActBalance(scan.nextDouble());
+							BankAccountPojo reducedAmountPojo = null;
+
+							try {
+								reducedAmountPojo = accountService.withdrawAmount(deductAmountPojo);
+								System.out.println(deductAmountPojo.getPhoneNo());
+								System.out.println(deductAmountPojo.getActBalance());
+							} catch (SystemException e) {
+								System.out.println(e.getMessage());
+								break;
+							}
+							System.out.println("*****************************");
+							System.out.println("Withdraw successfull! \nAmount Withdrawn :$"
+									+ deductAmountPojo.getActBalance());
+							System.out.println("*****************************");
+						}
+						break;
+						
+					case 4:
+						if (returnedLoginUserPojo != null) {
+
+							BankAccountPojo viewAmountPojo = new BankAccountPojo();
+							viewAmountPojo.setPhoneNo(returnedLoginUserPojo.getPhoneNo());
+							BankAccountPojo displayAmountPojo = null;
+
+							try {
+								displayAmountPojo = accountService.viewBalance(viewAmountPojo);
+							} catch (SystemException e) {
+								System.out.println(e.getMessage());
+								break;
+							}
+							System.out.println("*****************************");
+							System.out.println("Account Balance :$"
+									+ displayAmountPojo.getActBalance());
+							System.out.println("*****************************");
+						}
+						break;
+						
+
 					}
-				}
-				else {
+				} else {
 					System.out.println("Please enter valid user credentials");
 				}
 				break;
@@ -127,8 +192,6 @@ public class BankingApplicationSystem {
 			System.exit(0);
 
 		}
-		
 
 	}
 }
-

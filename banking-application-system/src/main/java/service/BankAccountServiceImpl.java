@@ -25,19 +25,16 @@ public class BankAccountServiceImpl implements BankAccountService {
 		return bankAccountDao.createAccount(bankAccountPojo);
 	}
 
-	public BankAccountPojo depositAmount(int amount) {
-		// TODO Auto-generated method stub
-		return null;
+	public BankAccountPojo depositAmount(BankAccountPojo bankAccountPojo) throws SystemException{
+		return bankAccountDao.depositAmount(bankAccountPojo);
 	}
 
-	public BankAccountPojo withdrawAmount(int amount) {
-		// TODO Auto-generated method stub
-		return null;
+	public BankAccountPojo withdrawAmount(BankAccountPojo bankAccountPojo) throws SystemException{
+		return bankAccountDao.withdrawAmount(bankAccountPojo);
 	}
 
-	public Double viewBalance() {
-		// TODO Auto-generated method stub
-		return null;
+	public BankAccountPojo viewBalance(BankAccountPojo bankAccountPojo) throws SystemException{
+		return bankAccountDao.viewBalance(bankAccountPojo);
 	}
 
 }
