@@ -22,19 +22,19 @@
     <fullyQualifiedTypeName name="dao.UserDao"/>
     <fullyQualifiedTypeName name="dao.UserDaoImpl"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
-    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
-    <fullyQualifiedTypeName name="exception.SystemException"/>
     <fullyQualifiedTypeName name="javax.print.attribute.standard.JobOriginatingUserName"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="service.UserService"/>
     <fullyQualifiedTypeName name="service.UserServiceImpl"/>
     <fullyQualifiedTypeName name="model.UserPojo"/>
-    <fullyQualifiedTypeName name="java.lang.Double"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="java.sql.Statement"/>
     <fullyQualifiedTypeName name="dao.BankAccountDaoImpl"/>
     <fullyQualifiedTypeName name="dao.BankAccountDao"/>
     <fullyQualifiedTypeName name="service.BankAccountService"/>
     <fullyQualifiedTypeName name="service.BankAccountServiceImpl"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="exception.SystemException"/>
     <fullyQualifiedTypeName name="model.BankAccountPojo"/>
+    <fullyQualifiedTypeName name="java.lang.Double"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
 </qualifiedTypeNameHistroy>
