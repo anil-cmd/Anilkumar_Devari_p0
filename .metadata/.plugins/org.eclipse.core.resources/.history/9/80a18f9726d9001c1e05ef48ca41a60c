@@ -1,0 +1,21 @@
+package sample;
+
+import java.util.ArrayList;
+
+public class ArrayListDemo {
+
+	public static void main(String[] args) {
+		
+		ArrayList<String> studentList = new ArrayList<String>();
+		
+		studentList.add("tom");
+		studentList.add("ram");
+		studentList.add("beem");
+		studentList.add("som");
+		studentList.add("raid");
+		
+		
+
+	}
+
+}

@@ -1,0 +1,34 @@
+package sample;
+
+import java.lang.reflect.Constructor;
+import java.util.Scanner;
+
+
+public class JavaProgramIntrospection {
+
+	public static void main(String[] args) {
+		
+		Scanner scanner = new Scanner(System.in);
+		String className = scanner.nextLine();
+		try {
+		Class userClass = Class.forName(className);
+		Constructor[] userClassCons = userClass.getConstructors();
+		for(Constructor eachConstructor : userClassCons) {
+		System.out.println(eachConstructor.getName())
+		}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+
+	}
+
+}

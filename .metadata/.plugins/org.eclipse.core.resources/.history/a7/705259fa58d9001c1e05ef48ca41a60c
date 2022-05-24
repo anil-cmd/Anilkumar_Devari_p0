@@ -1,0 +1,26 @@
+package sample;
+
+import java.util.HashMap;
+import java.util.Iterator;
+
+public class HashMapDemo {
+
+	public static void main(String[] args) {
+		
+		HashMap<String, String> myMap = new HashMap<String, String>();
+		myMap.put("Dhoni", "Batsmen");
+		myMap.put("Bhuvi", "Bowler");
+		myMap.put("Jadeja", "Fielder");
+		myMap.put("dinesh", "Wk");
+		
+		//iterating over key
+		
+		Iterator<String> it = myMap.keySet().iterator();
+		while (it.hasNext()) {
+			System.out.println(it.next());
+			
+		}
+
+	}
+
+}

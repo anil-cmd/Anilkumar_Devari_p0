@@ -1,0 +1,16 @@
+package sample;
+
+public class RemoveSpaces {
+
+	public static void main(String[] args) {
+
+		String str = "  J a  v a  s t a  r  ";
+		
+		String str1 = str.replaceAll("\\s", "");
+		
+
+		System.out.println(str1);
+
+	}
+
+}

@@ -1,0 +1,16 @@
+package sample;
+
+import java.util.Scanner;
+
+import jdk.tools.jaotc.collect.classname.ClassNameSource;
+
+public class JavaProgramIntrospection {
+
+	public static void main(String[] args) {
+		
+		Scanner scanner = new Scanner(System.in);
+		scanner.nextLine(Class.forName("org.postgresql.Driver"));
+
+	}
+
+}

@@ -1,0 +1,37 @@
+package sample;
+
+import java.util.ArrayList;
+
+
+public class ArrayListDemo {
+
+	public static void main(String[] args) {
+		
+		ArrayList<String> studentList = new ArrayList<String>();
+		
+		studentList.add("tom");
+		studentList.add("ram");
+		studentList.add("beem");
+		studentList.add("som");
+		studentList.add("raid");
+		
+//		typical for loop
+		for(int i=0; i<=studentList.size()-1; i++) {
+			System.out.println(studentList.get(i));
+		}
+		System.out.println("-----");
+//		foreach loop
+		for(String student : studentList) {
+			System.out.println(student);
+		}
+		System.out.println("------");
+		
+//		streamLambda
+		
+		studentList.stream().forEach(ele -> System.out.println(ele));
+		
+		
+
+	}
+
+}

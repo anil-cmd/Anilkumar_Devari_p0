@@ -1,0 +1,41 @@
+package sample;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
+
+public class HashMapDemo {
+
+	public static void main(String[] args) {
+		
+		HashMap<String, String> myMap = new HashMap<String, String>();
+		myMap.put("Dhoni", "Batsmen");
+		myMap.put("Bhuvi", "Bowler");
+		myMap.put("Jadeja", "Fielder");
+		myMap.put("dinesh", "Wk");
+		
+		//iterating over key
+		
+		Iterator<String> it = myMap.keySet().iterator();
+		while (it.hasNext()) {
+			String key =  it.next();
+			String value = myMap.get(key);
+			System.out.println("Name :"+ key+ "," + "dept :"+ value);
+			
+		}
+		System.out.println("------------------------------");
+		//iterating over the set using entry set
+		
+		Iterator<Entry<String, String>> setMap = myMap.entrySet().iterator();
+		
+		while (setMap.hasNext()) {
+			Entry<String, String> entrySet = setMap.next();
+			System.out.println("Name :"+entrySet.getKey()+","+"Dept :"+entrySet.getValue());
+		}
+		System.out.println("------------------------------");
+		//iterating over using for each and lambda
+		
+		myMap.forEach((k,v) -> System.out.println("Name :"+k+","+"Dept :"+v));
+	}
+
+}

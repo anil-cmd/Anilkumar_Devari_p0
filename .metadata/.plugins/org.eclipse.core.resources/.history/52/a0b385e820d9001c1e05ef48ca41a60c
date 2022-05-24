@@ -1,0 +1,24 @@
+package sample;
+
+import java.util.ArrayList;
+
+public class ArrayListDemo {
+
+	public static void main(String[] args) {
+		
+		ArrayList<Object> ar = new ArrayList<Object>();
+		ar.add(100);
+		ar.add(200);
+		ar.add("testing");
+		ar.add('t');
+		ar.add(12.33);
+		ar.add(true);
+		
+		
+		System.out.println(ar.get(2));
+		System.out.println(ar.get(6));
+		
+
+	}
+
+}
